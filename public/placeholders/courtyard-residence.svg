@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Courtyard Residence placeholder</title>
+  <desc id="desc">Abstract warm-toned architectural volumes arranged around a planted courtyard.</desc>
+  <rect width="1800" height="1200" fill="#d7d2c8"/>
+  <path d="M0 870h1800v330H0z" fill="#b8b0a3"/>
+  <path d="M170 840V340h650v500zm810 0V250h650v590z" fill="#ede9df"/>
+  <path d="M330 840V500h300v340zm850 0V420h280v420z" fill="#956248"/>
+  <path d="M820 840V650h160v190z" fill="#65705d"/>
+  <circle cx="900" cy="620" r="118" fill="#6f7a67" opacity=".7"/>
+  <path d="M900 800V570" stroke="#3d4939" stroke-width="18"/>
+  <g fill="none" stroke="#171714" stroke-opacity=".22" stroke-width="2">
+    <path d="M0 870h1800M170 840h1460M820 340v500M980 250v590"/>
+    <path d="M260 430h470M1070 350h470"/>
+  </g>
+  <g fill="#171714" font-family="Arial, Helvetica, sans-serif">
+    <text x="64" y="76" font-size="22" letter-spacing="4">COURTYARD RESIDENCE / PLACEHOLDER 01</text>
+    <text x="64" y="1130" font-size="25">Replace with owner-provided render</text>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+.cursor {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor span {
+  display: block;
+  width: max-content;
+  padding: 0.625rem 0.875rem;
+  border: 0;
+  border-radius: 4px;
+  background: rgb(20 20 18 / 94%);
+  box-shadow: none;
+  color: var(--color-inverse-text);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  visibility: hidden;
+  opacity: 0;
+  text-transform: uppercase;
+  transform-origin: center;
+  translate: -50% -50%;
+  will-change: transform, opacity;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor,
+  .cursor span {
+    will-change: auto;
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">Architectural image placeholder</title>
+  <desc id="description">An abstract composition of warm grey architectural volumes for replacement with project imagery.</desc>
+  <rect width="1600" height="1000" fill="#dedbd3"/>
+  <path d="M0 770h1600v230H0z" fill="#c8c2b7"/>
+  <path d="M180 720V310h470v410zm520 0V180h340v540zm390 0V390h330v330z" fill="#f0eee8"/>
+  <path d="M260 720V450h230v270zm550 0V330h110v390zm390 0V510h110v210z" fill="#a66f52" opacity=".78"/>
+  <path d="M0 770h1600M180 720h1240M650 310v410M1040 180v540" fill="none" stroke="#171714" stroke-opacity=".24" stroke-width="2"/>
+  <g fill="#171714" font-family="Arial, Helvetica, sans-serif">
+    <text x="64" y="72" font-size="22" letter-spacing="3">LOCAL PLACEHOLDER / 01</text>
+    <text x="64" y="930" font-size="26">Replace with owner-provided architecture imagery</text>
+  </g>
+</svg>

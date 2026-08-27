@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "packageName": "architecture-portfolio",
+  "packageManager": "npm",
+  "frameworks": [
+    "Next.js",
+    "React"
+  ],
+  "languages": [
+    "TypeScript",
+    "JavaScript"
+  ],
+  "databases": [],
+  "styling": [
+    "CSS Modules"
+  ],
+  "testing": [],
+  "sourceRoot": "src",
+  "architecture": {
+    "app": "src/app",
+    "components": "src/components"
+  },
+  "verificationCommands": [
+    "npm run typecheck",
+    "npm run lint",
+    "npm run build"
+  ],
+  "generatedAt": "2026-08-24T17:15:04.246Z",
+  "note": "Generated locally by Codex Builder Companion. No secret values are scanned or stored."
+}

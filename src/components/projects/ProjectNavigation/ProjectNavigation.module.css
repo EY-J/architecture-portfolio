@@ -1,0 +1,106 @@
+.navigation {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: var(--project-section-space, clamp(7.5rem, 10vw, 11.25rem));
+  padding-top: var(--space-3);
+  border-top: var(--rule);
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.61rem + 0.12vw, 0.75rem);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.nextLink {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: clamp(1rem, 2vw, 2rem);
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7.5vw, 8rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.86;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nextLink span:first-child {
+  max-width: 12ch;
+}
+
+.nextLink span:last-child {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.nextLink:hover span:last-child,
+.nextLink:focus-visible span:last-child {
+  transform: translate(0.15rem, -0.15rem);
+}
+
+.preview {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.preview img {
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+
+.preview:hover img,
+.preview:focus-visible img {
+  transform: scale(1.02);
+}
+
+.previousLink {
+  width: fit-content;
+  padding-top: var(--space-2);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.61rem + 0.12vw, 0.75rem);
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.previousLink:hover,
+.previousLink:focus-visible {
+  color: var(--color-text);
+}
+
+@media (max-width: 48rem) {
+  .nextLink {
+    align-items: flex-start;
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .preview {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nextLink span:last-child,
+  .preview img {
+    transition: none;
+  }
+}

@@ -1,0 +1,117 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border-top: var(--rule);
+}
+
+.entry {
+  min-width: 0;
+  padding: var(--space-3) var(--space-3) var(--space-4);
+  border-right: var(--rule);
+  border-bottom: var(--rule);
+}
+
+.entry:nth-child(3n + 1) {
+  padding-left: 0;
+}
+
+.entry:nth-child(3n) {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.entry dt {
+  margin-bottom: var(--space-2);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.09em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.entry dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.compact {
+  grid-template-columns: 1fr;
+  border-top: 0;
+}
+
+.compact .entry,
+.compact .entry:nth-child(3n + 1),
+.compact .entry:nth-child(3n) {
+  display: grid;
+  grid-template-columns: minmax(5.625rem, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  align-items: baseline;
+  padding: 1.125rem 0;
+  border-right: 0;
+  border-bottom: 1px solid rgb(20 20 18 / 12%);
+}
+
+.compact .entry:first-child {
+  padding-top: 0;
+}
+
+.compact .entry dt {
+  margin: 0;
+  color: rgb(20 20 18 / 52%);
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 0.84rem + 0.1vw, 1rem);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.4;
+  text-transform: none;
+}
+
+.compact .entry dd {
+  font-size: clamp(0.9375rem, 0.9rem + 0.12vw, 1.0625rem);
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: right;
+}
+
+@media (max-width: 48rem) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .entry:nth-child(3n + 1),
+  .entry:nth-child(3n) {
+    padding-right: var(--space-3);
+    padding-left: var(--space-3);
+    border-right: var(--rule);
+  }
+
+  .entry:nth-child(2n + 1) {
+    padding-left: 0;
+  }
+
+  .entry:nth-child(2n) {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .compact {
+    grid-template-columns: 1fr;
+  }
+
+  .compact .entry,
+  .compact .entry:nth-child(3n + 1),
+  .compact .entry:nth-child(3n),
+  .compact .entry:nth-child(2n + 1),
+  .compact .entry:nth-child(2n) {
+    grid-template-columns: minmax(5rem, 0.75fr) minmax(0, 1.25fr);
+    padding: 1rem 0;
+    border-right: 0;
+  }
+
+  .compact .entry:first-child {
+    padding-top: 0;
+  }
+}

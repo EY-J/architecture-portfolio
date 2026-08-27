@@ -1,0 +1,237 @@
+.section {
+  padding-block: clamp(3rem, 4vw, 4.5rem);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.shell {
+  padding-inline: clamp(1.5rem, 2vw, 2.5rem);
+}
+
+.card {
+  --contact-card-bg: color-mix(
+    in srgb,
+    var(--color-inverse-bg) 94%,
+    var(--color-bg)
+  );
+
+  display: grid;
+  width: min(100%, 110rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(3rem, 5vw, 6rem);
+  margin-inline: auto;
+  padding: clamp(3.5rem, 4vw, 4.5rem);
+  background: var(--contact-card-bg);
+  color: var(--color-inverse-text);
+}
+
+.introduction {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.introduction h2 {
+  max-width: 11ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 4vw, 5.25rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.copy {
+  max-width: 34rem;
+  margin-top: clamp(1.75rem, 2.5vw, 2.75rem);
+  color: rgb(245 242 234 / 72%);
+  font-size: clamp(0.92rem, 0.87rem + 0.16vw, 1.05rem);
+  line-height: 1.55;
+}
+
+.location {
+  margin-top: clamp(1.75rem, 2.5vw, 2.75rem);
+  color: rgb(245 242 234 / 86%);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.form {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 3vw, 3rem) clamp(1.5rem, 2.5vw, 3rem);
+  align-content: center;
+  min-width: 0;
+}
+
+.field {
+  display: grid;
+  min-width: 0;
+  gap: 0.45rem;
+}
+
+.field label {
+  color: rgb(245 242 234 / 76%);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem 0 0.72rem;
+  border: 0;
+  border-bottom: 1px solid rgb(245 242 234 / 34%);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-inverse-text);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  transition: border-color var(--duration-fast) ease;
+}
+
+.field input {
+  min-height: 2.9rem;
+}
+
+.field input:autofill,
+.field textarea:autofill,
+.field input:-webkit-autofill,
+.field textarea:-webkit-autofill {
+  box-shadow: 0 0 0 1000px var(--contact-card-bg) inset;
+  caret-color: var(--color-inverse-text);
+  -webkit-text-fill-color: var(--color-inverse-text);
+}
+
+.field textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.field textarea::placeholder {
+  color: rgb(245 242 234 / 42%);
+  opacity: 1;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-bottom-color: rgb(245 242 234 / 86%);
+  outline: none;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 1px solid rgb(245 242 234 / 42%);
+  outline-offset: 3px;
+}
+
+.messageField,
+.formFooter {
+  grid-column: 1 / -1;
+}
+
+.formFooter {
+  display: grid;
+  min-height: 3rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.formFooter button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  padding: 0 0 0.35rem;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: rgb(245 242 234 / 86%);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transition: color var(--duration-fast) ease;
+}
+
+.formFooter button:hover,
+.formFooter button:focus-visible {
+  color: var(--color-inverse-text);
+}
+
+.formFooter button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.status {
+  max-width: 28rem;
+  padding-top: 0.3rem;
+  color: rgb(245 242 234 / 58%);
+  font-size: var(--text-xs);
+  line-height: 1.45;
+}
+
+@media (max-width: 64rem) {
+  .card {
+    gap: clamp(2.5rem, 4vw, 3.5rem);
+    padding: clamp(2.75rem, 4vw, 3.5rem);
+  }
+
+  .introduction h2 {
+    font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  }
+}
+
+@media (max-width: 48rem) {
+  .section {
+    padding-block: clamp(2.5rem, 9vw, 3.5rem);
+  }
+
+  .shell {
+    padding-inline: var(--space-3);
+  }
+
+  .card,
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    gap: clamp(2.5rem, 9vw, 3.5rem);
+    padding: clamp(1.75rem, 7vw, 2.5rem) clamp(1.25rem, 6vw, 2rem);
+  }
+
+  .introduction h2 {
+    max-width: 10ch;
+    font-size: clamp(2.5rem, 11vw, 4rem);
+  }
+
+  .messageField,
+  .formFooter {
+    grid-column: auto;
+  }
+
+  .formFooter {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field input,
+  .field textarea,
+  .formFooter button {
+    transition: none;
+  }
+}

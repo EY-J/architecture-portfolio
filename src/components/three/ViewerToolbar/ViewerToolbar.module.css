@@ -1,0 +1,84 @@
+.toolbar {
+  display: flex;
+  align-items: stretch;
+  justify-self: center;
+  overflow: hidden;
+  border: 1px solid rgb(23 23 20 / 34%);
+  background: rgb(242 240 235 / 84%);
+  box-shadow: 0 0.75rem 2rem rgb(23 23 20 / 8%);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  backdrop-filter: blur(0.65rem);
+  pointer-events: auto;
+}
+
+.toolbar button {
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
+  border: 0;
+  border-right: 1px solid rgb(23 23 20 / 24%);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.toolbar > button:last-child {
+  border-right: 0;
+}
+
+.toolbar button:hover,
+.toolbar button[aria-pressed="true"],
+.toolbar button[aria-expanded="true"] {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+}
+
+.toolbar button:disabled {
+  color: rgb(23 23 20 / 38%);
+  cursor: not-allowed;
+}
+
+.toolbar button:disabled:hover {
+  background: transparent;
+  color: rgb(23 23 20 / 38%);
+}
+
+.modeGroup {
+  display: flex;
+  align-items: stretch;
+  border-right: 1px solid rgb(23 23 20 / 24%);
+}
+
+.modeGroup > span {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 0.8rem 0.35rem;
+  color: rgb(23 23 20 / 56%);
+}
+
+.modeGroup button:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 48rem) {
+  .toolbar {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    font-size: 0.6rem;
+    scrollbar-width: none;
+  }
+
+  .toolbar button {
+    flex: 1 0 auto;
+    min-width: 3.8rem;
+    padding-inline: 0.55rem;
+    white-space: nowrap;
+  }
+
+  .toolbar::-webkit-scrollbar {
+    display: none;
+  }
+}

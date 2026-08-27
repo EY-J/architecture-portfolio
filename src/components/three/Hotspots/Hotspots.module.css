@@ -1,0 +1,25 @@
+.marker {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid rgb(245 242 234 / 72%);
+  border-radius: 50%;
+  background: rgb(23 23 20 / 88%);
+  box-shadow: 0 0.35rem 1rem rgb(23 23 20 / 25%);
+  color: var(--color-inverse-text);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.marker:hover,
+.marker[aria-pressed="true"] {
+  background: var(--color-inverse-text);
+  color: var(--color-text);
+  transform: scale(1.08);
+}

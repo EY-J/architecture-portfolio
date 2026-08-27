@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Timber Research Pavilion placeholder</title>
+  <desc id="desc">Abstract repeating timber frames forming a lightweight research pavilion.</desc>
+  <rect width="1800" height="1200" fill="#d8d0c2"/>
+  <path d="M0 900h1800v300H0z" fill="#b9ae9c"/>
+  <path d="M230 850h1340l-210-470H440z" fill="#ece7dd"/>
+  <g fill="none" stroke="#80583c" stroke-width="28">
+    <path d="M320 860V510l140-150 140 150v350"/>
+    <path d="M540 860V485l120-130 120 130v375"/>
+    <path d="M760 860V465l110-115 110 115v395"/>
+    <path d="M980 860V465l110-115 110 115v395"/>
+    <path d="M1200 860V485l120-130 120 130v375"/>
+  </g>
+  <path d="M280 860h1240" stroke="#252421" stroke-width="18"/>
+  <g fill="none" stroke="#171714" stroke-opacity=".22" stroke-width="2">
+    <path d="M0 900h1800M230 850h1340M440 380h920"/>
+    <path d="M280 930h1240"/>
+  </g>
+  <g fill="#171714" font-family="Arial, Helvetica, sans-serif">
+    <text x="64" y="76" font-size="22" letter-spacing="4">TIMBER RESEARCH PAVILION / PLACEHOLDER 03</text>
+    <text x="64" y="1130" font-size="25">Replace with owner-provided render</text>
+  </g>
+</svg>

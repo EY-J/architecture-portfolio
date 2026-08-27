@@ -1,0 +1,127 @@
+.section {
+  display: grid;
+  gap: clamp(3rem, 3.5vw, 4rem);
+  padding-top: var(--project-section-space, clamp(7.5rem, 10vw, 11.25rem));
+}
+
+.heading {
+  display: grid;
+  align-items: start;
+  gap: clamp(1.5rem, 2vw, 2rem);
+}
+
+.marker {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.61rem + 0.12vw, 0.75rem);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  max-width: 8ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 3.4vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(3.5rem, 4vw, 4.5rem) clamp(1.25rem, 1.7vw, 1.75rem);
+}
+
+.figure {
+  display: grid;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  gap: var(--space-2);
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.drawing {
+  background: #f4f1e9;
+}
+
+.drawing .image {
+  object-fit: contain;
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-2);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.625rem, 0.6rem + 0.08vw, 0.6875rem);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.caption span:first-child {
+  white-space: nowrap;
+}
+
+.spatial .grid,
+.process .grid {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 64rem) {
+  .heading {
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+}
+
+@media (max-width: 48rem) {
+  .section {
+    gap: clamp(2.25rem, 9vw, 3.5rem);
+  }
+
+  .heading,
+  .grid,
+  .spatial .grid,
+  .process .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .heading {
+    gap: var(--space-4);
+  }
+
+  .heading h2 {
+    font-size: clamp(2.25rem, 10vw, 2.75rem);
+  }
+
+  .full,
+  .figure {
+    grid-column: auto;
+    justify-self: stretch;
+  }
+
+  .full .imageFrame,
+  .imageFrame {
+    aspect-ratio: 4 / 3;
+  }
+}

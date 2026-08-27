@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Civic Forum placeholder</title>
+  <desc id="desc">Abstract civic hall with a long public canopy and stepped gathering ground.</desc>
+  <rect width="1800" height="1200" fill="#c8cbd0"/>
+  <path d="M0 880h1800v320H0z" fill="#9ca2a5"/>
+  <path d="M120 800h1560v100H120z" fill="#252725"/>
+  <path d="M260 800V390h420v410zm860 0V300h420v500z" fill="#e5e1d9"/>
+  <path d="M680 800V560h440v240z" fill="#b06d4f"/>
+  <path d="M720 800V600h360v200z" fill="#343a3b"/>
+  <g fill="#737b7d">
+    <circle cx="630" cy="905" r="18"/><circle cx="760" cy="930" r="18"/><circle cx="890" cy="900" r="18"/><circle cx="1030" cy="935" r="18"/><circle cx="1170" cy="905" r="18"/>
+  </g>
+  <g fill="none" stroke="#171714" stroke-opacity=".24" stroke-width="2">
+    <path d="M0 880h1800M120 800h1560M260 390h420M1120 300h420"/>
+    <path d="M350 390v410m120-410v410m120-410v410m620-500v500m120-500v500m120-500v500"/>
+  </g>
+  <g fill="#171714" font-family="Arial, Helvetica, sans-serif">
+    <text x="64" y="76" font-size="22" letter-spacing="4">CIVIC FORUM / PLACEHOLDER 02</text>
+    <text x="64" y="1130" font-size="25">Replace with owner-provided render</text>
+  </g>
+</svg>

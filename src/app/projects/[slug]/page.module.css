@@ -1,0 +1,514 @@
+.page {
+  --project-section-space: clamp(6.875rem, 7.5vw, 8.75rem);
+
+  padding-bottom: clamp(7rem, 10vw, 11rem);
+}
+
+.hero {
+  display: grid;
+  gap: clamp(1.25rem, 2vw, 2rem);
+  padding-top: var(--space-4);
+}
+
+.heroImage {
+  position: relative;
+  height: clamp(34rem, 82vh, 58rem);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.heroImage::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(12 12 10 / 0%) 38%,
+    rgb(12 12 10 / 18%) 58%,
+    rgb(12 12 10 / 78%) 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.heroImage img {
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  gap: clamp(1.5rem, 2.5vw, 2.75rem);
+  padding: clamp(1.5rem, 3vw, 3.5rem);
+  color: var(--color-inverse-text);
+}
+
+.heroOverlay h1 {
+  max-width: 13ch;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.heroOverlayInfo {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.35fr) minmax(0, 0.65fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+  align-items: start;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgb(245 242 234 / 42%);
+}
+
+.heroType {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.heroType span:first-child {
+  color: rgb(245 242 234 / 62%);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.heroType span:last-child,
+.heroOverlayInfo p {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.heroOverlayInfo p {
+  max-width: 38ch;
+  justify-self: end;
+  color: rgb(245 242 234 / 82%);
+}
+
+.caseStudy {
+  display: grid;
+  width: min(83vw, 88.75rem);
+  grid-template-columns: minmax(0, 0.93fr) minmax(0, 1fr);
+  column-gap: clamp(1.75rem, 2vw, 2.25rem);
+  align-items: start;
+  margin: var(--project-section-space) auto 0;
+}
+
+.caseStudyRail {
+  --project-details-inline: clamp(3rem, 5vw, 5.625rem);
+
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  align-self: stretch;
+  gap: 5.5rem;
+}
+
+.projectDetails {
+  position: sticky;
+  top: calc(var(--header-height) + 1.75rem);
+  display: grid;
+  width: 100%;
+  max-width: none;
+  align-self: start;
+  gap: clamp(1.875rem, 2.5vw, 2.5rem);
+  margin-top: 0;
+  padding: clamp(4.5rem, 5vw, 5.625rem) var(--project-details-inline)
+    clamp(4rem, 4.5vw, 5rem);
+}
+
+.caseStudyContent {
+  display: grid;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  justify-self: start;
+  font-size: clamp(0.9375rem, 0.9rem + 0.12vw, 1.0625rem);
+}
+
+.sectionMarker,
+.inverseMarker {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.61rem + 0.12vw, 0.75rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.sectionMarker {
+  color: var(--color-muted);
+}
+
+.overview {
+  display: grid;
+  padding: 0 0 var(--project-section-space);
+}
+
+.overview .sectionMarker {
+  margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+
+.overview h2 {
+  font-family: var(--font-display);
+  margin-bottom: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(2.75rem, 3.4vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.projectStatement {
+  max-width: 45rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 2.1vw, 2rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.narrative {
+  display: grid;
+  gap: 0;
+}
+
+.narrative > .sectionMarker {
+  margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+
+.narrativeContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 2.75vw, 2.75rem);
+}
+
+.narrativeContent h2 {
+  max-width: 9ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 3.4vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.narrativeCopy {
+  display: grid;
+  align-content: start;
+  gap: clamp(1.25rem, 2vw, 2rem);
+  max-width: 38rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.designIntentFigure {
+  display: grid;
+  width: 100%;
+  max-width: none;
+  gap: var(--space-2);
+  margin-top: clamp(2.75rem, 3.5vw, 3.5rem);
+}
+
+.designIntentImage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f4f1e9;
+}
+
+.designIntentImage img {
+  object-fit: contain;
+}
+
+.designIntentFigure figcaption {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.64rem, 0.61rem + 0.1vw, 0.72rem);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.viewerCta {
+  display: grid;
+  min-height: clamp(38.75rem, 43vw, 41.25rem);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(3rem, 4.5vw, 4.5rem);
+  margin-top: var(--project-section-space);
+  padding: clamp(5rem, 5.5vw, 6rem) clamp(4.5rem, 5.5vw, 6rem);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+}
+
+.viewerMain {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 1fr);
+  gap: clamp(4rem, 5.5vw, 6rem);
+  align-items: center;
+}
+
+.inverseMarker {
+  color: rgb(245 242 234 / 58%);
+}
+
+.viewerCta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 6.2vw, 7rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.viewerCta h2 span {
+  white-space: nowrap;
+}
+
+.viewerAction {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: clamp(1.25rem, 1.8vw, 1.75rem);
+}
+
+.viewerLabel {
+  color: rgb(245 242 234 / 58%);
+  font-family: var(--font-mono);
+  font-size: clamp(0.625rem, 0.59rem + 0.1vw, 0.75rem);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.viewerAction h3 {
+  max-width: 20ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.viewerDescription {
+  max-width: 34rem;
+  color: rgb(245 242 234 / 70%);
+  font-size: clamp(0.9375rem, 0.9rem + 0.12vw, 1.0625rem);
+  line-height: 1.6;
+}
+
+.viewerAction a {
+  display: inline-flex;
+  align-items: center;
+  margin-top: clamp(0.25rem, 0.75vw, 0.75rem);
+  padding: clamp(0.9375rem, 1.1vw, 1.125rem)
+    clamp(1.25rem, 1.5vw, 1.5rem);
+  border: 1px solid rgb(245 242 234 / 45%);
+  color: var(--color-inverse-text);
+  font-family: var(--font-mono);
+  font-size: clamp(0.625rem, 0.6rem + 0.08vw, 0.75rem);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.viewerAction a:hover,
+.viewerAction a:focus-visible {
+  background: var(--color-inverse-text);
+  color: var(--color-inverse-bg);
+}
+
+.viewerMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: clamp(1rem, 1.5vw, 1.5rem);
+  border-top: 1px solid rgb(245 242 234 / 18%);
+  color: rgb(245 242 234 / 52%);
+  font-family: var(--font-mono);
+  font-size: clamp(0.5625rem, 0.54rem + 0.08vw, 0.6875rem);
+  letter-spacing: 0.09em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.viewerMeta span:last-child {
+  text-align: right;
+}
+
+@media (max-width: 64rem) {
+  .page {
+    --project-section-space: clamp(6rem, 10vw, 8rem);
+  }
+
+  .caseStudy {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: var(--project-section-space);
+  }
+
+  .caseStudyRail {
+    --project-details-inline: 0rem;
+
+    gap: clamp(3.5rem, 8vw, 5rem);
+  }
+
+  .projectDetails {
+    position: static;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .caseStudyContent {
+    max-width: none;
+  }
+
+  .narrativeContent {
+    grid-template-columns: 1fr;
+  }
+
+  .designIntentFigure {
+    width: 100%;
+  }
+
+  .viewerCta {
+    min-height: clamp(34rem, 68vw, 38.75rem);
+    padding: clamp(4rem, 7vw, 5rem) clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .viewerMain {
+    grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
+    gap: clamp(3rem, 5vw, 4rem);
+  }
+
+  .viewerCta h2 {
+    font-size: clamp(3.5rem, 7.5vw, 5.25rem);
+  }
+}
+
+@media (max-width: 56rem) {
+  .viewerMain {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 48rem) {
+  .page {
+    --project-section-space: clamp(4.75rem, 17vw, 6.5rem);
+
+    padding-bottom: clamp(5rem, 16vw, 7rem);
+  }
+
+  .hero {
+    gap: var(--space-4);
+  }
+
+  .heroImage {
+    height: clamp(34rem, 125vw, 44rem);
+  }
+
+  .heroImage::after {
+    background: linear-gradient(
+      to bottom,
+      rgb(12 12 10 / 0%) 28%,
+      rgb(12 12 10 / 28%) 50%,
+      rgb(12 12 10 / 86%) 100%
+    );
+  }
+
+  .heroOverlay {
+    gap: var(--space-4);
+    padding: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .heroOverlay h1 {
+    font-size: clamp(2.75rem, 12vw, 4rem);
+  }
+
+  .heroOverlayInfo {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .heroOverlayInfo p {
+    max-width: 32ch;
+    justify-self: start;
+  }
+
+  .narrativeContent {
+    grid-template-columns: 1fr;
+  }
+
+  .overview {
+    gap: 0;
+  }
+
+  .narrative {
+    gap: 0;
+  }
+
+  .projectStatement {
+    font-size: clamp(1.625rem, 7.5vw, 2.125rem);
+  }
+
+  .narrativeContent {
+    gap: clamp(2rem, 8vw, 3rem);
+  }
+
+  .narrativeContent h2 {
+    font-size: clamp(2.25rem, 10vw, 2.75rem);
+  }
+
+  .viewerCta {
+    min-height: 0;
+    gap: clamp(2.5rem, 10vw, 3.5rem);
+    margin-inline: calc(var(--page-gutter) * -1);
+    padding: clamp(3.5rem, 12vw, 4.5rem) var(--page-gutter);
+  }
+
+  .viewerMain {
+    gap: clamp(2.75rem, 10vw, 4rem);
+  }
+
+  .viewerCta h2 {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+  }
+
+  .viewerCta h2 span {
+    white-space: normal;
+  }
+
+  .viewerMeta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .viewerMeta span:last-child {
+    text-align: left;
+  }
+}
+
+@media (max-width: 25rem) {
+  .heroImage {
+    height: 34rem;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewerAction a {
+    transition: none;
+  }
+}
