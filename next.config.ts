@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   agentRules: false,
   reactStrictMode: true,
+  allowedDevOrigins: ['architectu1452.builtwithrocket.new'],
   // @ts-expect-error turbopack config silences webpack/turbopack conflict warning
   turbopack: {},
 
