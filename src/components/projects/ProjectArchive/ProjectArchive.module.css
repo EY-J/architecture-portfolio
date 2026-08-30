@@ -6,12 +6,12 @@
 }
 
 /* ═══════════════════════════════════════════
-   FEATURED HERO
+   FEATURED HERO — full viewport height
 ═══════════════════════════════════════════ */
 .featured {
   position: relative;
   width: 100%;
-  height: clamp(70vh, 85vh, 95vh);
+  height: 100vh;
   overflow: hidden;
   background: var(--color-inverse-bg);
 }
@@ -264,207 +264,153 @@
 }
 
 /* ═══════════════════════════════════════════
-   PROJECT LIST
+   PROJECT GRID (image cards)
 ═══════════════════════════════════════════ */
-.list {
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
   padding-inline: clamp(1.5rem, 4vw, 5rem);
+  padding-top: clamp(2rem, 3vw, 3rem);
   padding-bottom: clamp(6rem, 10vw, 12rem);
 }
 
-.listHeader {
-  display: grid;
-  grid-template-columns: 4rem 5.5rem 1fr 12rem 16rem 6rem;
-  gap: 1rem;
-  padding-block: 0.75rem;
-  border-bottom: 1px solid var(--color-line);
-}
-
-.listHeaderCell {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-}
-
-.listRow {
-  border-bottom: 1px solid var(--color-line);
-  transition: background 200ms ease;
-}
-
-.listRow:hover {
-  background: var(--color-surface);
-}
-
-.listRowLink {
-  display: grid;
-  grid-template-columns: 4rem 5.5rem 1fr 12rem 16rem 6rem 2rem;
-  gap: 1rem;
-  align-items: center;
-  padding-block: clamp(0.75rem, 1.2vw, 1.1rem);
+.gridCard {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--color-surface-strong);
   text-decoration: none;
   color: inherit;
-}
-
-.listIndex {
-  font-family: var(--font-mono);
-  font-size: clamp(0.65rem, 0.63rem + 0.08vw, 0.72rem);
-  letter-spacing: 0.08em;
-  color: var(--color-muted);
-  flex-shrink: 0;
-}
-
-.listTitle {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 1.5vw, 1.75rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  color: var(--color-text);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  transition: color 200ms ease;
-}
-
-.listRow:hover .listTitle {
-  color: var(--color-accent);
-}
-
-.listThumb {
-  position: relative;
-  width: 5.5rem;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
   border-radius: 2px;
-  flex-shrink: 0;
-  background: var(--color-surface-strong);
 }
 
-.listThumbImage {
-  object-fit: cover;
-  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.listRow:hover .listThumbImage {
-  transform: scale(1.06);
-}
-
-.featuredBadge {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  border: 1px solid rgb(155 103 76 / 0.4);
-  padding: 0.2rem 0.5rem;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-.listCategory,
-.listLocation,
-.listYear {
-  font-family: var(--font-mono);
-  font-size: clamp(0.62rem, 0.6rem + 0.08vw, 0.7rem);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-}
-
-.listArrow {
-  font-size: 1rem;
-  color: var(--color-muted);
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), color 200ms ease;
-  justify-self: end;
-}
-
-.listRow:hover .listArrow {
-  transform: translateX(4px);
-  color: var(--color-text);
-}
-
-/* ═══════════════════════════════════════════
-   HOVER PREVIEW (desktop only)
-═══════════════════════════════════════════ */
-.hoverPreview {
-  position: fixed;
-  right: clamp(2rem, 5vw, 6rem);
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(14rem, 20vw, 22rem);
-  aspect-ratio: 3 / 4;
-  pointer-events: none;
-  z-index: 50;
-  overflow: hidden;
-  border-radius: 3px;
-  opacity: 0;
-  transition: opacity 300ms ease;
-}
-
-.hoverPreview.hoverPreviewVisible {
-  opacity: 1;
-}
-
-.hoverPreviewImg {
+.gridCardMedia {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
-.hoverPreviewImg.hoverPreviewImgActive {
-  opacity: 1;
-}
-
-.hoverPreviewImage {
+.gridCardImage {
   object-fit: cover;
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1), filter 400ms ease;
+  filter: brightness(0.82) saturate(0.85);
+}
+
+.gridCard:hover .gridCardImage {
+  transform: scale(1.05);
+  filter: brightness(0.7) saturate(0.75);
+}
+
+.gridCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(10 10 8 / 0.82) 0%,
+    rgb(10 10 8 / 0.25) 45%,
+    transparent 100%
+  );
+  transition: opacity 400ms ease;
+}
+
+.gridCard:hover .gridCardOverlay {
+  opacity: 1.2;
+}
+
+/* "View Project" button — appears on hover at top-left */
+.gridCardHoverBtn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgb(245 242 234 / 0.12);
+  border: 1px solid rgb(245 242 234 / 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  color: rgb(245 242 234 / 0.9);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 300ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.gridCard:hover .gridCardHoverBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gridCardHoverBtnText {
+  line-height: 1;
+}
+
+/* Content overlay at bottom-left */
+.gridCardContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  color: var(--color-inverse-text);
+}
+
+.gridCardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.gridCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.gridCardCategory,
+.gridCardYear {
+  font-family: var(--font-mono);
+  font-size: clamp(0.58rem, 0.56rem + 0.08vw, 0.65rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(245 242 234 / 0.65);
+}
+
+.gridCardSep {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgb(245 242 234 / 0.35);
+}
+
+.gridCardStatus {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(0.55rem, 0.53rem + 0.06vw, 0.62rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(245 242 234 / 0.45);
 }
 
 /* ═══════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════ */
-@media (max-width: 72rem) {
-  .hoverPreview {
-    display: none;
-  }
-
-  .listHeader {
-    grid-template-columns: 3rem 4.5rem 1fr 10rem 6rem;
-  }
-
-  .listRowLink {
-    grid-template-columns: 3rem 4.5rem 1fr 10rem 6rem 1.5rem;
-  }
-
-  .listThumb {
-    width: 4.5rem;
-  }
-
-  .listLocation {
-    display: none;
-  }
-}
-
 @media (max-width: 48rem) {
-  .listHeader {
-    display: none;
-  }
-
-  .listRowLink {
-    grid-template-columns: 2.5rem 3.5rem 1fr auto 1.5rem;
-  }
-
-  .listThumb {
-    width: 3.5rem;
-  }
-
-  .listCategory,
-  .listYear {
-    display: none;
-  }
-
-  .listTitle {
-    font-size: clamp(1rem, 4vw, 1.25rem);
+  .grid {
+    grid-template-columns: 1fr;
   }
 
   .archiveHeaderInner {
@@ -474,5 +420,9 @@
 
   .featuredLocation {
     display: none;
+  }
+
+  .gridCardTitle {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
   }
 }

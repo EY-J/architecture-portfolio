@@ -20,7 +20,6 @@ type ProjectArchiveProps = {
 export function ProjectArchive({ projects }: ProjectArchiveProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const pageRef = useRef<HTMLDivElement>(null);
-  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   const categories = useMemo(
     () =>
@@ -41,13 +40,13 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
   );
 
   const featuredProject = visibleProjects.find((p) => p.featured) ?? visibleProjects[0];
+  const gridProjects = visibleProjects.filter((p) => p.slug !== featuredProject?.slug);
 
   useLayoutEffect(() => {
     const page = pageRef.current;
     if (!page || prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Hero text reveal
       const heroTitle = page.querySelector<HTMLElement>("[data-hero-title]");
       const heroMeta = page.querySelector<HTMLElement>("[data-hero-meta]");
       const heroImg = page.querySelector<HTMLElement>("[data-hero-img]");
@@ -59,7 +58,6 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
       if (heroTitle) tl.from(heroTitle, { autoAlpha: 0, y: 40, duration: 1.1 }, 0.2);
       if (heroMeta) tl.from(heroMeta, { autoAlpha: 0, y: 20, duration: 0.8 }, 0.5);
 
-      // Header number
       const bigNum = page.querySelector<HTMLElement>("[data-big-num]");
       if (bigNum) {
         gsap.from(bigNum, {
@@ -71,16 +69,15 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
         });
       }
 
-      // List rows
-      const rows = gsap.utils.toArray<HTMLElement>("[data-list-row]", page);
-      rows.forEach((row, i) => {
-        gsap.from(row, {
+      const cards = gsap.utils.toArray<HTMLElement>("[data-grid-card]", page);
+      cards.forEach((card, i) => {
+        gsap.from(card, {
           autoAlpha: 0,
-          y: 24,
+          y: 30,
           duration: 0.7,
           ease: "power3.out",
-          delay: i * 0.04,
-          scrollTrigger: { trigger: row, start: "top 92%", once: true },
+          delay: i * 0.06,
+          scrollTrigger: { trigger: card, start: "top 92%", once: true },
         });
       });
     }, page);
@@ -91,7 +88,7 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
   return (
     <div ref={pageRef} className={styles.page}>
 
-      {/* ── Featured Hero ── */}
+      {/* ── Featured Hero (full viewport height) ── */}
       {featuredProject && (
         <section className={styles.featured}>
           <Link href={`/projects/${featuredProject.slug}`} className={styles.featuredLink}>
@@ -171,74 +168,45 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
         <div className={styles.archiveRule} />
       </div>
 
-      {/* ── Project List ── */}
-            <div className={styles.list}>
-        {/* Column headers */}
-        <div className={styles.listHeader}>
-          <span className={styles.listHeaderCell}>No.</span>
-          <span className={styles.listHeaderCell}></span>
-          <span className={styles.listHeaderCell}>Project</span>
-          <span className={styles.listHeaderCell}>Category</span>
-          <span className={styles.listHeaderCell}>Location</span>
-          <span className={styles.listHeaderCell}>Year</span>
-        </div>
-
-        {visibleProjects.map((project, i) => (
-          <div
-            key={project.slug}
-            className={styles.listRow}
-            data-list-row
-            onMouseEnter={() => setHoveredSlug(project.slug)}
-            onMouseLeave={() => setHoveredSlug(null)}
-          >
-            <Link href={`/projects/${project.slug}`} className={styles.listRowLink}>
-              <span className={styles.listIndex}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className={styles.listThumb}>
+      {/* ── Project Grid ── */}
+      {gridProjects.length > 0 && (
+        <div className={styles.grid}>
+          {gridProjects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/projects/${project.slug}`}
+              className={styles.gridCard}
+              data-grid-card
+            >
+              <div className={styles.gridCardMedia}>
                 <Image
                   src={project.thumbnailImage}
                   alt={project.heroImageAlt ?? `Architectural view of ${project.title}`}
                   fill
-                  sizes="(max-width: 48rem) 3rem, 5rem"
-                  className={styles.listThumbImage}
+                  sizes="(max-width: 48rem) 100vw, (max-width: 72rem) 50vw, 33vw"
+                  className={styles.gridCardImage}
                 />
-              </span>
-              <span className={styles.listTitle}>
-                {project.title}
-                {project.featured && (
-                  <span className={styles.featuredBadge}>Featured</span>
+              </div>
+              <div className={styles.gridCardOverlay} />
+              <div className={styles.gridCardHoverBtn}>
+                <span className={styles.gridCardHoverBtnText}>View Project</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+              <div className={styles.gridCardContent}>
+                <h3 className={styles.gridCardTitle}>{project.title}</h3>
+                <div className={styles.gridCardMeta}>
+                  <span className={styles.gridCardCategory}>{project.category}</span>
+                  <span className={styles.gridCardSep}>/</span>
+                  <span className={styles.gridCardYear}>{project.year}</span>
+                </div>
+                {project.status && (
+                  <span className={styles.gridCardStatus}>{project.status}</span>
                 )}
-              </span>
-              <span className={styles.listCategory}>{project.category}</span>
-              <span className={styles.listLocation}>{project.location}</span>
-              <span className={styles.listYear}>{project.year}</span>
-              <span className={styles.listArrow} aria-hidden="true">→</span>
+              </div>
             </Link>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Hover image preview (desktop) ── */}
-      <div
-        className={`${styles.hoverPreview} ${hoveredSlug ? styles.hoverPreviewVisible : ""}`}
-        aria-hidden="true"
-      >
-        {visibleProjects.map((project) => (
-          <div
-            key={project.slug}
-            className={`${styles.hoverPreviewImg} ${hoveredSlug === project.slug ? styles.hoverPreviewImgActive : ""}`}
-          >
-            <Image
-              src={project.thumbnailImage}
-              alt=""
-              fill
-              sizes="22vw"
-              className={styles.hoverPreviewImage}
-            />
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
