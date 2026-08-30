@@ -39,8 +39,7 @@ export function toArchitectureModelError(
     code: isFbx ? "parse-fbx" : "parse-gltf",
     message: `${source.format.toUpperCase()} parsing failed for ${source.src}. ${message}`,
     publicMessage: isFbx
-      ? "The FBX model could not be parsed."
-      : "The GLTF model could not be parsed.",
+      ? "The FBX model could not be parsed." :"The GLTF model could not be parsed.",
     source,
     cause: error,
   });

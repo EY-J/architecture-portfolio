@@ -66,9 +66,7 @@ export function ContactForm() {
   };
 
   const statusMessage =
-    status === "error"
-      ? "Unable to send your message right now. Please try again."
-      : "";
+    status === "error" ?"Unable to send your message right now. Please try again." :"";
 
   return (
     <form

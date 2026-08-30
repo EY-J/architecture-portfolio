@@ -113,8 +113,7 @@ export function LoadingOverlay({
             {percentage !== undefined
               ? `${percentage}%`
               : phase === "downloading"
-                ? "Loading…"
-                : "Working…"}
+                ? "Loading…" :"Working…"}
           </span>
         </div>
         <div
@@ -125,8 +124,7 @@ export function LoadingOverlay({
         </div>
         <p className={styles.note}>
           {phase === "downloading"
-            ? "Architectural files can be large. Geometry is prepared after download."
-            : "The download is complete. Keep this tab open while the model is prepared for WebGL."}
+            ? "Architectural files can be large. Geometry is prepared after download." :"The download is complete. Keep this tab open while the model is prepared for WebGL."}
           {progress?.isFallback ? " Trying configured fallback source." : ""}
         </p>
       </div>

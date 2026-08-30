@@ -1,18 +1,10 @@
 export type Vector3Tuple = readonly [number, number, number];
 
 export type ProjectImageType =
-  | "render"
-  | "photo"
-  | "plan"
-  | "section"
-  | "elevation"
-  | "diagram";
+  | "render" |"photo" |"plan" |"section" |"elevation" |"diagram";
 
 export type ProjectGalleryCategory =
-  | "design"
-  | "actual"
-  | "drawings"
-  | "process";
+  | "design" |"actual" |"drawings" |"process";
 
 export type ProjectImage = {
   src: string;

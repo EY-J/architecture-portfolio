@@ -4,10 +4,10 @@ import styles from "./not-found.module.css";
 
 export default function NotFound() {
   return (
-    <div className={`${styles.page} site-shell`}>
+    <div className={`${styles?.page} site-shell`}>
       <p className="eyebrow muted" data-reveal="meta">404 / Outside the index</p>
-      <div className={styles.content} data-reveal="section">
-        <p className={styles.code} aria-hidden="true">
+      <div className={styles?.content} data-reveal="section">
+        <p className={styles?.code} aria-hidden="true">
           404
         </p>
         <div>
@@ -16,7 +16,7 @@ export default function NotFound() {
             The page or project may have moved, or its slug may not match the project
             configuration.
           </p>
-          <div className={styles.links}>
+          <div className={styles?.links}>
             <Link href="/">Return home</Link>
             <Link href="/projects">Open project index</Link>
           </div>

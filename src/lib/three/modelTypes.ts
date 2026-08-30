@@ -19,10 +19,7 @@ export type ModelLoadProgress = {
 
 export type ModelPreparationPhase =
   | "downloading"
-  | "parsing"
-  | "preparing"
-  | "normalizing"
-  | "mounting";
+  | "parsing" |"preparing" |"normalizing" |"mounting";
 
 export type ModelDiagnostics = {
   nodeCount: number;
@@ -79,14 +76,7 @@ export type CameraFit = {
 };
 
 export type ModelLoadErrorCode =
-  | "no-source"
-  | "unsupported-format"
-  | "not-found"
-  | "network"
-  | "parse-fbx"
-  | "parse-gltf"
-  | "empty-model"
-  | "unknown";
+  | "no-source" |"unsupported-format" |"not-found" |"network" |"parse-fbx" |"parse-gltf" |"empty-model" |"unknown";
 
 export class ArchitectureModelError extends Error {
   readonly code: ModelLoadErrorCode;

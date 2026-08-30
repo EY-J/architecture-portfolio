@@ -30,10 +30,8 @@ function Mass({
   materialMode,
 }: MassProps) {
   const activeColor =
-    materialMode === "clay"
-      ? "#d8d3c9"
-      : materialMode === "wireframe"
-        ? "#383833"
+    materialMode === "clay" ?"#d8d3c9"
+      : materialMode === "wireframe" ?"#383833"
         : color;
 
   return (

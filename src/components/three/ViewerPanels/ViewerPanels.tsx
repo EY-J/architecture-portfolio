@@ -102,8 +102,7 @@ export function ViewerPanels({
             <h2 id={`${panelId}-title`}>Navigate the model</h2>
             <p className={styles.summary}>
               {isMobile
-                ? "Drag to orbit, pinch to zoom, and use two fingers to pan."
-                : "Drag to orbit, right-drag to pan, and scroll to zoom."}
+                ? "Drag to orbit, pinch to zoom, and use two fingers to pan." :"Drag to orbit, right-drag to pan, and scroll to zoom."}
             </p>
           </div>
           <dl className={styles.shortcuts}>

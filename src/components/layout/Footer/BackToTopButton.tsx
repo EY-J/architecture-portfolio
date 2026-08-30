@@ -13,8 +13,7 @@ export function BackToTopButton() {
   };
 
   return (
-    <button className={styles.backToTop} type="button" onClick={scrollToTop}>
-      Back to top <span aria-hidden="true">↑</span>
+    <button className={styles?.backToTop} type="button" onClick={scrollToTop}>Back to top <span aria-hidden="true">↑</span>
     </button>
   );
 }
