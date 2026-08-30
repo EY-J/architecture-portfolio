@@ -273,7 +273,7 @@
 
 .listHeader {
   display: grid;
-  grid-template-columns: 4rem 1fr 12rem 16rem 6rem;
+  grid-template-columns: 4rem 5.5rem 1fr 12rem 16rem 6rem;
   gap: 1rem;
   padding-block: 0.75rem;
   border-bottom: 1px solid var(--color-line);
@@ -298,10 +298,10 @@
 
 .listRowLink {
   display: grid;
-  grid-template-columns: 4rem 1fr 12rem 16rem 6rem 2rem;
+  grid-template-columns: 4rem 5.5rem 1fr 12rem 16rem 6rem 2rem;
   gap: 1rem;
   align-items: center;
-  padding-block: clamp(1.1rem, 1.8vw, 1.6rem);
+  padding-block: clamp(0.75rem, 1.2vw, 1.1rem);
   text-decoration: none;
   color: inherit;
 }
@@ -328,6 +328,25 @@
 
 .listRow:hover .listTitle {
   color: var(--color-accent);
+}
+
+.listThumb {
+  position: relative;
+  width: 5.5rem;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  flex-shrink: 0;
+  background: var(--color-surface-strong);
+}
+
+.listThumbImage {
+  object-fit: cover;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.listRow:hover .listThumbImage {
+  transform: scale(1.06);
 }
 
 .featuredBadge {
@@ -410,11 +429,15 @@
   }
 
   .listHeader {
-    grid-template-columns: 3rem 1fr 10rem 6rem;
+    grid-template-columns: 3rem 4.5rem 1fr 10rem 6rem;
   }
 
   .listRowLink {
-    grid-template-columns: 3rem 1fr 10rem 6rem 1.5rem;
+    grid-template-columns: 3rem 4.5rem 1fr 10rem 6rem 1.5rem;
+  }
+
+  .listThumb {
+    width: 4.5rem;
   }
 
   .listLocation {
@@ -428,7 +451,11 @@
   }
 
   .listRowLink {
-    grid-template-columns: 2.5rem 1fr auto 1.5rem;
+    grid-template-columns: 2.5rem 3.5rem 1fr auto 1.5rem;
+  }
+
+  .listThumb {
+    width: 3.5rem;
   }
 
   .listCategory,

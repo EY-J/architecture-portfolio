@@ -176,6 +176,7 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
         {/* Column headers */}
         <div className={styles.listHeader}>
           <span className={styles.listHeaderCell}>No.</span>
+          <span className={styles.listHeaderCell}></span>
           <span className={styles.listHeaderCell}>Project</span>
           <span className={styles.listHeaderCell}>Category</span>
           <span className={styles.listHeaderCell}>Location</span>
@@ -193,6 +194,15 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
             <Link href={`/projects/${project.slug}`} className={styles.listRowLink}>
               <span className={styles.listIndex}>
                 {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className={styles.listThumb}>
+                <Image
+                  src={project.thumbnailImage}
+                  alt={project.heroImageAlt ?? `Architectural view of ${project.title}`}
+                  fill
+                  sizes="(max-width: 48rem) 3rem, 5rem"
+                  className={styles.listThumbImage}
+                />
               </span>
               <span className={styles.listTitle}>
                 {project.title}
