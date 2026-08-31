@@ -133,39 +133,46 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
 
       {/* ── Archive Header ── */}
       <div className={styles.archiveHeader}>
-        <div className={styles.archiveHeaderInner}>
-          <div className={styles.archiveTitleBlock}>
-            <span className={styles.archiveBigNum} data-big-num>
-              {String(visibleProjects.length).padStart(2, "0")}
-            </span>
-            <div className={styles.archiveTitleText}>
-              <h1 className={styles.archiveTitle}>Project<br />Index</h1>
-              <p className={styles.archiveSub}>
-                Selected architectural work,<br />studies, and visual explorations.
-              </p>
-            </div>
-          </div>
-
-          {/* Filters */}
-          <div
-            className={styles.filters}
-            role="group"
-            aria-label="Filter projects by category"
-          >
-            {["All", ...categories].map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                className={styles.filterBtn}
-                aria-pressed={activeCategory === cat}
-                onClick={() => setActiveCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+        {/* Top row: label + count */}
+        <div className={styles.archiveTopRow}>
+          <span className={styles.archiveLabel}>Projects</span>
+          <span className={styles.archiveCount} data-big-num>
+            {String(visibleProjects.length).padStart(2, "0")}
+          </span>
         </div>
-        <div className={styles.archiveRule} />
+
+        {/* Wordmark */}
+        <div className={styles.archiveWordmarkRow}>
+          <h1 className={styles.archiveWordmark}>ARCHIVE</h1>
+          <p className={styles.archiveTagline}>
+            Selected architectural work, studies &amp; visual explorations.
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className={styles.archiveDivider} />
+
+        {/* Filters */}
+        <div
+          className={styles.filters}
+          role="group"
+          aria-label="Filter projects by category"
+        >
+          {["All", ...categories].map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              className={styles.filterBtn}
+              aria-pressed={activeCategory === cat}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+              {activeCategory === cat && (
+                <span className={styles.filterBtnIndicator} aria-hidden="true" />
+              )}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* ── Project Grid ── */}
