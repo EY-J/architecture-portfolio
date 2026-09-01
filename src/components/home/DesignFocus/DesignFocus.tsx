@@ -71,7 +71,12 @@ export function DesignFocus() {
 
       <div className={styles.grid}>
         {designFocusAreas.map((focus) => (
-          <article key={focus.title} className={styles.card} data-focus-card>
+          <article
+            key={focus.title}
+            className={styles.card}
+            data-focus-card
+            data-header-surface="image"
+          >
             <Image
               className={styles.image}
               src={focus.image}

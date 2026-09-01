@@ -77,6 +77,11 @@ export type ArchitectureModel = {
   views?: readonly ProjectView[];
 };
 
+export type ProjectKeyDesignMove = {
+  title: string;
+  description: string;
+};
+
 export type ArchitectureProject = {
   slug: string;
   title: string;
@@ -96,6 +101,7 @@ export type ArchitectureProject = {
   thumbnailImage: string;
   summary: string;
   narrative?: readonly string[];
+  keyDesignMoves?: readonly ProjectKeyDesignMove[];
   carousel?: readonly ProjectImage[];
   designIntentImage?: ProjectImage;
   images?: readonly ProjectImage[];

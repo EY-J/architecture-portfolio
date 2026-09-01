@@ -1,8 +1,8 @@
 .navigation {
   display: grid;
-  gap: clamp(1.5rem, 3vw, 3rem);
+  gap: clamp(3rem, 4.5vw, 4.75rem);
   margin-top: var(--project-section-space, clamp(7.5rem, 10vw, 11.25rem));
-  padding-top: var(--space-3);
+  padding-top: clamp(1rem, 1.5vw, 1.5rem);
   border-top: var(--rule);
 }
 
@@ -10,97 +10,123 @@
   display: flex;
   justify-content: space-between;
   gap: var(--space-4);
-  color: var(--color-muted);
+  align-items: baseline;
+}
+
+.heading h2,
+.archiveLink {
   font-family: var(--font-mono);
   font-size: clamp(0.65rem, 0.61rem + 0.12vw, 0.75rem);
+  font-weight: 400;
   letter-spacing: 0.1em;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
-.nextLink {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding-block: clamp(1rem, 2vw, 2rem);
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 7.5vw, 8rem);
-  font-weight: 500;
-  letter-spacing: -0.065em;
-  line-height: 0.86;
+.heading h2 {
+  color: var(--color-muted);
+}
+
+.archiveLink {
+  display: inline-flex;
+  gap: 0.55rem;
+  align-items: center;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
-.nextLink span:first-child {
-  max-width: 12ch;
+.archiveLink span:first-child {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size var(--duration-base) var(--ease-out);
 }
 
-.nextLink span:last-child {
-  flex: 0 0 auto;
-  font-family: var(--font-mono);
-  font-size: clamp(1.5rem, 3vw, 3rem);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1;
-  transition: transform var(--duration-fast) var(--ease-out);
+.archiveArrow {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-out);
 }
 
-.nextLink:hover span:last-child,
-.nextLink:focus-visible span:last-child {
-  transform: translate(0.15rem, -0.15rem);
+.archiveLink:hover span:first-child,
+.archiveLink:focus-visible span:first-child {
+  background-size: 100% 1px;
 }
 
-.preview {
+.archiveLink:hover .archiveArrow,
+.archiveLink:focus-visible .archiveArrow {
+  transform: translate(0.12rem, -0.12rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2.75rem);
+}
+
+.card {
+  min-width: 0;
+}
+
+.cardLink {
+  display: grid;
+  gap: clamp(1rem, 1.4vw, 1.35rem);
+  color: inherit;
+  text-decoration: none;
+}
+
+.imageFrame {
   position: relative;
-  display: block;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--color-surface);
 }
 
-.preview img {
+.image {
   object-fit: cover;
-  transition: transform 700ms var(--ease-out);
 }
 
-.preview:hover img,
-.preview:focus-visible img {
-  transform: scale(1.02);
+.cardLink:focus-visible {
+  outline: none;
 }
 
-.previousLink {
-  width: fit-content;
-  padding-top: var(--space-2);
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: clamp(0.65rem, 0.61rem + 0.12vw, 0.75rem);
-  letter-spacing: 0.08em;
-  line-height: 1.5;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.previousLink:hover,
-.previousLink:focus-visible {
-  color: var(--color-text);
+.cardLink:focus-visible .imageFrame {
+  outline: 1px solid var(--color-text);
+  outline-offset: 4px;
 }
 
 @media (max-width: 48rem) {
-  .nextLink {
-    align-items: flex-start;
-    font-size: clamp(3rem, 15vw, 5rem);
+  .navigation {
+    gap: clamp(2.5rem, 10vw, 3.5rem);
   }
 
-  .preview {
+  .heading {
+    align-items: flex-start;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 12vw, 4.5rem);
+  }
+
+  .imageFrame {
     aspect-ratio: 4 / 3;
   }
 }
 
+@media (max-width: 28rem) {
+  .heading {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .nextLink span:last-child,
-  .preview img {
+  .archiveLink span {
     transition: none;
+  }
+
+  .archiveLink:hover .archiveArrow,
+  .archiveLink:focus-visible .archiveArrow {
+    transform: none;
   }
 }

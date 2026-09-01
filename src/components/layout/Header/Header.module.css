@@ -1,6 +1,4 @@
 .header {
-  --header-rule-opacity: 0.8;
-
   position: sticky;
   z-index: 100;
   top: 0;
@@ -8,13 +6,11 @@
   left: 0;
   width: 100%;
   min-height: var(--header-height);
-  background: var(--color-bg);
+  background: transparent;
   box-shadow: none;
 }
 
 .homeHeader {
-  --header-rule-opacity: 0.45;
-
   position: fixed;
 }
 
@@ -47,17 +43,6 @@
   gap: clamp(var(--space-4), 3vw, var(--space-7));
 }
 
-.inner::after {
-  position: absolute;
-  right: var(--page-gutter);
-  bottom: 0;
-  left: var(--page-gutter);
-  height: 1px;
-  background: color-mix(in srgb, var(--color-text) 12%, transparent);
-  content: "";
-  opacity: var(--header-rule-opacity);
-}
-
 .identity {
   display: inline-flex;
   min-width: 0;
@@ -78,8 +63,9 @@
   background: transparent;
   box-shadow: none;
   filter:
-    drop-shadow(0 0 1px rgb(0 0 0 / 0.32))
-    drop-shadow(0 1px 2px rgb(0 0 0 / 0.1));
+    drop-shadow(0 0 1px rgb(245 242 234 / 0.72))
+    drop-shadow(0 0 1px rgb(0 0 0 / 0.42))
+    drop-shadow(0 1px 2px rgb(0 0 0 / 0.16));
 }
 
 .identityName {
@@ -92,6 +78,8 @@
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
+  color: var(--color-text);
+  transition: color var(--duration-fast) ease;
 }
 
 .homeHeader .identityName {
@@ -148,6 +136,17 @@
   color: var(--color-text);
 }
 
+.identityName[data-on-dark],
+.navigationLink[data-on-dark],
+.menuButton[data-on-dark] {
+  color: var(--color-inverse-text);
+}
+
+.navigationLink[data-on-dark]:hover,
+.navigationLink[data-on-dark][aria-current="page"] {
+  color: var(--color-inverse-text);
+}
+
 @media (min-width: 64.0625rem) {
   .navigationList {
     gap: clamp(2.375rem, 3vw, 3rem);
@@ -179,11 +178,6 @@
 @media (max-width: 48rem) {
   .inner {
     grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .inner::after {
-    right: 0;
-    left: 0;
   }
 
   .menuButton {
@@ -237,6 +231,10 @@
     transform: translateY(0);
   }
 
+  .navigationOpen .navigationLink[data-on-dark] {
+    color: var(--color-text);
+  }
+
   .navigationList {
     display: grid;
     width: 100%;
@@ -269,8 +267,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .homeHeader {
-    --header-rule-opacity: 1;
+  .header {
+    transition: none;
   }
 
   .homeHeader .identityName {

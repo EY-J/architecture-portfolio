@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ProjectArchiveShowcase } from "@/components/projects/ProjectArchiveShowcase/ProjectArchiveShowcase";
 import { ProjectGrid } from "@/components/projects/ProjectGrid/ProjectGrid";
 import { projects } from "@/data/projects";
 
@@ -12,21 +13,30 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  return (
-    <div className={`${styles.page} site-shell`}>
-      <header className={styles.intro}>
-        <div className={styles.introMeta} data-reveal="meta">
-          <p className="eyebrow">
-            Project Archieves
-          </p>
-        </div>
-        <h1 data-reveal="title">Built, drawn, and imagined spaces.</h1>
-        <p className={styles.summary} data-reveal="section" data-reveal-order="1">
-          Selected architectural work, studies, and visual explorations.
-        </p>
-      </header>
+  const featuredProjects = projects
+    .filter((project) => project.featured)
+    .slice(0, 3);
 
-      <ProjectGrid projects={projects} />
-    </div>
+  return (
+    <>
+      <ProjectArchiveShowcase projects={featuredProjects} />
+
+      <section className={styles.gallery} aria-labelledby="projects-title">
+        <div className={`${styles.galleryInner} site-shell`}>
+          <h2 className={styles.galleryIntro} id="projects-title">
+            <span className={styles.galleryEyebrow}>
+              <span>ARCHITECTURAL WORKS</span>
+              <span
+                className={styles.galleryEyebrowRule}
+                data-archive-rule
+                aria-hidden="true"
+              />
+            </span>
+            <span className={styles.galleryTitle}>PROJECT ARCHIVES</span>
+          </h2>
+          <ProjectGrid projects={projects} />
+        </div>
+      </section>
+    </>
   );
 }

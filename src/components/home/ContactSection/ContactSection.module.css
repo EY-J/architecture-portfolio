@@ -1,6 +1,10 @@
 .section {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+  margin: 0;
   padding-block: clamp(3rem, 4vw, 4.5rem);
-  background: var(--color-bg);
+  background: transparent;
   color: var(--color-text);
 }
 

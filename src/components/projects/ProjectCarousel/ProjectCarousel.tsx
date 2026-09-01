@@ -21,6 +21,7 @@ export function ProjectCarousel({
         className={styles.slide}
         key={`${duplicate ? "duplicate" : "original"}-${image.src}`}
         aria-hidden={duplicate || undefined}
+        data-header-surface="image"
       >
         <Image
           src={image.src}

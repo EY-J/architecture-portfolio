@@ -7,9 +7,13 @@ import styles from "./ProjectHoverCursor.module.css";
 
 type ProjectHoverCursorProps = {
   rootRef: RefObject<HTMLDivElement | null>;
+  disabled?: boolean;
 };
 
-export function ProjectHoverCursor({ rootRef }: ProjectHoverCursorProps) {
+export function ProjectHoverCursor({
+  rootRef,
+  disabled = false,
+}: ProjectHoverCursorProps) {
   const cursorRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
 
@@ -24,6 +28,20 @@ export function ProjectHoverCursor({ rootRef }: ProjectHoverCursorProps) {
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+
+    if (disabled) {
+      delete root.dataset.projectCursor;
+      gsap.to(label, {
+        autoAlpha: 0,
+        duration: reducedMotion ? 0 : 0.2,
+        ease: "power3.out",
+        overwrite: true,
+        scale: reducedMotion ? 1 : 0.8,
+      });
+
+      return () => gsap.killTweensOf(label);
+    }
+
     const followDuration = reducedMotion ? 0 : 0.24;
     const xTo = gsap.quickTo(cursor, "x", {
       duration: followDuration,
@@ -98,7 +116,7 @@ export function ProjectHoverCursor({ rootRef }: ProjectHoverCursorProps) {
       gsap.killTweensOf(cursor);
       gsap.killTweensOf(label);
     };
-  }, [rootRef]);
+  }, [disabled, rootRef]);
 
   return (
     <div ref={cursorRef} className={styles.cursor} aria-hidden="true">

@@ -60,6 +60,7 @@ export function ProjectGallery({
                 className={`${styles.imageFrame} ${
                   isDrawing ? styles.drawing : ""
                 }`}
+                data-header-surface="image"
               >
                 <Image
                   className={styles.image}

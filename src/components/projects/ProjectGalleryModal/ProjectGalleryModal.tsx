@@ -2,7 +2,6 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import Image from "next/image";
 import { createPortal } from "react-dom";
 import {
   useCallback,
@@ -12,6 +11,7 @@ import {
   useState,
 } from "react";
 
+import { useSmoothScroll } from "@/components/layout/SmoothScroll/SmoothScroll";
 import type { ProjectGalleryCategory } from "@/types/project";
 
 import styles from "./ProjectGalleryModal.module.css";
@@ -26,7 +26,6 @@ export type ProjectGalleryModalImage = {
 type ProjectGalleryModalProps = {
   projectTitle: string;
   images: readonly ProjectGalleryModalImage[];
-  thumbnail: ProjectGalleryModalImage;
 };
 
 type GalleryFilter = "all" | ProjectGalleryCategory;
@@ -38,10 +37,52 @@ const categoryOrder: readonly ProjectGalleryCategory[] = [
   "process",
 ];
 
+type GalleryModalItemProps = {
+  image: ProjectGalleryModalImage;
+  index: number;
+  onOpen: (index: number, opener: HTMLButtonElement) => void;
+};
+
+function GalleryModalItem({ image, index, onOpen }: GalleryModalItemProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <figure
+      className={styles.galleryItem}
+      style={{ animationDelay: `${index * 70}ms` }}
+    >
+      <button
+        className={styles.galleryImageButton}
+        type="button"
+        onClick={(event) => onOpen(index, event.currentTarget)}
+        aria-label={`View ${image.title || image.alt} full screen`}
+      >
+        {!isLoaded ? (
+          <span className={styles.galleryImageSkeleton} aria-hidden="true" />
+        ) : null}
+        <img
+          className={`${styles.galleryImage} ${
+            isLoaded ? styles.galleryImageLoaded : ""
+          }`}
+          src={image.src}
+          alt={image.alt}
+          loading={index < 2 ? "eager" : "lazy"}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)}
+        />
+        <span className={styles.viewIndicator} aria-hidden="true">
+          View {"\u2197"}
+        </span>
+      </button>
+      {image.title ? <figcaption>{image.title}</figcaption> : null}
+    </figure>
+  );
+}
+
 export function ProjectGalleryModal({
   images,
-  thumbnail,
 }: ProjectGalleryModalProps) {
+  const { acquireScrollLock, scrollTo: smoothScrollTo } = useSmoothScroll();
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [activeCategory, setActiveCategory] = useState<GalleryFilter>("all");
@@ -88,7 +129,7 @@ export function ProjectGalleryModal({
       setIsOpen(false);
       setIsClosing(false);
       closeTimerRef.current = null;
-    }, 220);
+    }, 320);
   }, []);
 
   const openLightbox = useCallback(
@@ -142,6 +183,7 @@ export function ProjectGalleryModal({
     wasOpenRef.current = true;
     const previousOverflow = document.body.style.overflow;
     scrollPositionRef.current = { x: window.scrollX, y: window.scrollY };
+    const releaseScrollLock = acquireScrollLock();
     document.body.style.overflow = "hidden";
     document.body.classList.add("project-gallery-open");
     closeRef.current?.focus();
@@ -149,9 +191,13 @@ export function ProjectGalleryModal({
     return () => {
       document.body.style.overflow = previousOverflow;
       document.body.classList.remove("project-gallery-open");
-      window.scrollTo(scrollPositionRef.current.x, scrollPositionRef.current.y);
+      releaseScrollLock();
+      smoothScrollTo(scrollPositionRef.current.y, {
+        force: true,
+        immediate: true,
+      });
     };
-  }, [isOpen]);
+  }, [acquireScrollLock, isOpen, smoothScrollTo]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -212,21 +258,9 @@ export function ProjectGalleryModal({
         data-reveal="section"
         aria-haspopup="dialog"
       >
-        <span className={styles.launcherImage}>
-          <Image
-            src={thumbnail.src}
-            alt=""
-            fill
-            sizes="(max-width: 1024px) 40vw, 15vw"
-          />
-        </span>
-        <span className={styles.launcherCopy}>
-          <span>
-            Explore project
-            <br />
-            gallery
-          </span>
-          <span aria-hidden="true">{"\u2197"}</span>
+        <span>Explore project gallery</span>
+        <span className={styles.launcherArrow} aria-hidden="true">
+          {"\u2197"}
         </span>
       </button>
 
@@ -258,7 +292,10 @@ export function ProjectGalleryModal({
                   ref={closeRef}
                   aria-label="Close project gallery"
                 >
-                  Close gallery {"\u00d7"}
+                  <span>Close gallery</span>
+                  <span className={styles.closeArrow} aria-hidden="true">
+                    {"\u00d7"}
+                  </span>
                 </button>
               </header>
 
@@ -292,40 +329,27 @@ export function ProjectGalleryModal({
                 activeImageIndex !== null ? styles.galleryScrollLocked : ""
               }`}
               ref={galleryScrollRef}
+              data-lenis-prevent
             >
               <div className={styles.galleryScrollContent}>
                 <div className={styles.galleryGrid}>
                   {filteredImages.map((image, index) => (
-                    <figure className={styles.galleryItem} key={image.src}>
-                      <button
-                        className={styles.galleryImageButton}
-                        type="button"
-                        onClick={(event) =>
-                          openLightbox(index, event.currentTarget)
-                        }
-                        aria-label={`View ${image.title || image.alt} full screen`}
-                      >
-                        <img
-                          className={styles.galleryImage}
-                          src={image.src}
-                          alt={image.alt}
-                          loading="lazy"
-                        />
-                      </button>
-                      {image.title ? (
-                        <figcaption>{image.title}</figcaption>
-                      ) : null}
-                    </figure>
+                    <GalleryModalItem
+                      image={image}
+                      index={index}
+                      onOpen={openLightbox}
+                      key={image.src}
+                    />
                   ))}
                 </div>
               </div>
             </div>
-            <div className={styles.modalBottomGutter} aria-hidden="true" />
           </section>
 
           {activeImageIndex !== null && filteredImages[activeImageIndex] ? (
             <section
               className={styles.lightbox}
+              data-lenis-prevent
               role="dialog"
               aria-modal="true"
               aria-label={

@@ -1,0 +1,182 @@
+.hero {
+  --hero-progress: 0;
+  --hero-overlay-progress: 0;
+
+  position: relative;
+  width: 100%;
+  height: calc(100svh - var(--header-height));
+}
+
+.stage {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 32rem;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.stage::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: clamp(7rem, 15vh, 11rem);
+  background: linear-gradient(
+    to bottom,
+    rgb(12 12 10 / 42%),
+    rgb(12 12 10 / 16%) 58%,
+    transparent
+  );
+  content: "";
+  opacity: clamp(0, calc(1 - var(--hero-overlay-progress)), 1);
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.stage::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(12 12 10 / 0%) 36%,
+    rgb(12 12 10 / 18%) 58%,
+    rgb(12 12 10 / 78%) 100%
+  );
+  content: "";
+  opacity: clamp(0, calc(1 - var(--hero-overlay-progress)), 1);
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.media {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: clamp(0.08, calc(1 - (var(--hero-progress) * 0.92)), 1);
+  filter: grayscale(calc(var(--hero-progress) * 1))
+    brightness(calc(1 - (var(--hero-progress) * 0.12)))
+    contrast(calc(1 - (var(--hero-progress) * 0.18)))
+    blur(calc(var(--hero-progress) * 1px));
+  will-change: filter, opacity;
+}
+
+.media img {
+  object-fit: cover;
+  transform: scale(calc(1 + (var(--hero-progress) * 0.01)));
+  transform-origin: center;
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  gap: clamp(1.5rem, 2.5vw, 2.75rem);
+  padding: clamp(1.5rem, 3vw, 3.5rem);
+  color: var(--color-inverse-text);
+  opacity: clamp(
+    0,
+    calc(1 - (var(--hero-overlay-progress) * 1.45)),
+    1
+  );
+  pointer-events: none;
+  transform: translateY(calc(var(--hero-overlay-progress) * -0.75rem));
+  will-change: opacity, transform;
+}
+
+.overlay h1 {
+  max-width: 13ch;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.overlayInfo {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.35fr) minmax(0, 0.65fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+  align-items: start;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgb(245 242 234 / 42%);
+}
+
+.projectType {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.projectType span:first-child {
+  color: rgb(245 242 234 / 62%);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.projectType span:last-child,
+.overlayInfo p {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.overlayInfo p {
+  max-width: 38ch;
+  justify-self: end;
+  color: rgb(245 242 234 / 82%);
+}
+
+@media (max-width: 48rem) {
+  .stage {
+    min-height: 30rem;
+  }
+
+  .stage::after {
+    background: linear-gradient(
+      to bottom,
+      rgb(12 12 10 / 0%) 28%,
+      rgb(12 12 10 / 28%) 50%,
+      rgb(12 12 10 / 86%) 100%
+    );
+  }
+
+  .overlay {
+    gap: var(--space-4);
+    padding: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .overlay h1 {
+    font-size: clamp(2.75rem, 12vw, 4rem);
+  }
+
+  .overlayInfo {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .overlayInfo p {
+    max-width: 32ch;
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage::before,
+  .stage::after,
+  .media,
+  .media img,
+  .overlay {
+    will-change: auto;
+  }
+}

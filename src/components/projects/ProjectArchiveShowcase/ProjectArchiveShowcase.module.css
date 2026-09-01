@@ -1,0 +1,264 @@
+.showcase {
+  --archive-inset: clamp(1.5rem, 3vw, 3.5rem);
+
+  position: relative;
+  width: 100%;
+  height: calc(143svh - var(--header-height));
+}
+
+.stage {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 32rem;
+  overflow: hidden;
+  background: var(--color-inverse-bg);
+}
+
+.projectLink {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  color: var(--color-inverse-text);
+  text-decoration: none;
+}
+
+.showcase[data-project-cursor="enabled"] .projectLink {
+  cursor: none;
+}
+
+.showcase[data-transition-inactive] .projectLink {
+  pointer-events: none;
+}
+
+.layers,
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.layers {
+  z-index: 0;
+  background: var(--color-inverse-bg);
+  will-change: opacity;
+}
+
+.layer {
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--archive-crossfade-duration)
+    cubic-bezier(0.45, 0, 0.55, 1);
+  will-change: opacity;
+}
+
+.activeLayer {
+  z-index: 2;
+  opacity: 1;
+}
+
+.outgoingLayer {
+  z-index: 1;
+  opacity: 0;
+}
+
+.image {
+  object-fit: cover;
+  filter: brightness(0.76);
+  transform: scale(1);
+}
+
+.scrim {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgb(10 10 9 / 28%) 0%,
+      rgb(10 10 9 / 12%) 18%,
+      transparent 42%
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(12 12 10 / 12%) 0%,
+      rgb(12 12 10 / 5%) 28%,
+      rgb(12 12 10 / 3%) 52%,
+      rgb(12 12 10 / 22%) 72%,
+      rgb(12 12 10 / 58%) 100%
+    );
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.creamOverlay {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: var(--color-bg);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.archiveLabel,
+.projectInfo {
+  position: absolute;
+  z-index: 4;
+  left: var(--archive-inset);
+  pointer-events: none;
+}
+
+.archiveLabel {
+  top: calc(var(--header-height) + 3.25rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgb(247 244 236 / 96%);
+  font-family: var(--font-mono);
+  font-size: clamp(0.875rem, 0.82rem + 0.2vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.archiveLabel::after {
+  width: clamp(3rem, 4vw, 4.5rem);
+  height: 1px;
+  background: rgb(247 244 236 / 65%);
+  content: "";
+}
+
+.projectInfo {
+  right: var(--archive-inset);
+  bottom: var(--archive-inset);
+  color: var(--color-inverse-text);
+}
+
+.title {
+  max-width: 13ch;
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+  transition:
+    opacity 425ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 425ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.metadata {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: clamp(1.125rem, 1.4vw, 1.5rem);
+  color: rgb(245 242 234 / 88%);
+  font-family: var(--font-mono);
+  font-size: clamp(0.625rem, 0.59rem + 0.1vw, 0.6875rem);
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  transition:
+    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.projectInfo[data-phase="out"] .title {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.projectInfo[data-phase="out"] .metadata {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition-delay: 50ms;
+}
+
+.projectInfo[data-phase="before-in"] .title {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: none;
+}
+
+.projectInfo[data-phase="before-in"] .metadata {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: none;
+}
+
+.projectInfo[data-phase="in"] .metadata {
+  transition-delay: 50ms;
+}
+
+@media (max-width: 48rem) {
+  .showcase {
+    --archive-inset: clamp(1.125rem, 5vw, 1.5rem);
+  }
+
+  .stage {
+    min-height: 30rem;
+  }
+
+  .archiveLabel {
+    top: calc(var(--header-height) + 1.75rem);
+    gap: 0.875rem;
+    font-size: clamp(0.75rem, 3.6vw, 0.875rem);
+  }
+
+  .archiveLabel::after {
+    width: clamp(2.5rem, 13vw, 3.5rem);
+  }
+
+  .title {
+    max-width: 12ch;
+    font-size: clamp(2.4rem, 11vw, 4rem);
+  }
+
+  .metadata {
+    margin-top: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .scrim {
+    background:
+      linear-gradient(
+        to bottom,
+        rgb(10 10 9 / 32%) 0%,
+        rgb(10 10 9 / 14%) 22%,
+        transparent 46%
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(12 12 10 / 8%) 0%,
+        rgb(12 12 10 / 4%) 34%,
+        rgb(12 12 10 / 16%) 58%,
+        rgb(12 12 10 / 38%) 76%,
+        rgb(12 12 10 / 72%) 100%
+      );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase {
+    height: calc(100svh - var(--header-height));
+  }
+
+  .layers,
+  .scrim,
+  .creamOverlay,
+  .archiveLabel,
+  .projectInfo,
+  .layer,
+  .title,
+  .metadata {
+    transition: none;
+    will-change: auto;
+  }
+}

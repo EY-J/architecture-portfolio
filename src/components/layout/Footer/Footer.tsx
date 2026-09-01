@@ -20,7 +20,7 @@ export function Footer() {
   const phoneHref = siteConfig.phone.replace(/[^\d+]/g, "");
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-header-surface="dark">
       <div className={`${styles.inner} site-shell`}>
         <div className={styles.main}>
           <div className={styles.brandColumn}>

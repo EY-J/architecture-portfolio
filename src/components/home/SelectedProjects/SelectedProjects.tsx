@@ -149,6 +149,7 @@ export function SelectedProjects({ projects }: SelectedProjectsProps) {
               key={project.slug}
               className={styles.project}
               data-project-card
+              data-header-surface="image"
             >
               <Link
                 className={styles.projectLink}

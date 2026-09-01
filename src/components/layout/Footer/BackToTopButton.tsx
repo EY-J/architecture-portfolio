@@ -1,15 +1,15 @@
 "use client";
 
+import { useSmoothScroll } from "@/components/layout/SmoothScroll/SmoothScroll";
 import { shouldReduceMotion } from "@/hooks/usePrefersReducedMotion";
 
 import styles from "./Footer.module.css";
 
 export function BackToTopButton() {
+  const { scrollTo } = useSmoothScroll();
+
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: shouldReduceMotion() ? "auto" : "smooth",
-    });
+    scrollTo(0, { immediate: shouldReduceMotion() });
   };
 
   return (

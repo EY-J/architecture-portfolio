@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ProjectCardOverlay } from "@/components/projects/ProjectCardOverlay/ProjectCardOverlay";
 import type { ArchitectureProject } from "@/types/project";
 
 import styles from "./ProjectCard.module.css";
@@ -34,15 +35,25 @@ export function ProjectCard({
       data-project-featured={variant === "feature" ? "" : undefined}
       data-project-slug={project.slug}
     >
-      <Link className={styles.link} href={`/projects/${project.slug}`}>
+      <Link
+        className={`${styles.link} project-card-overlay-link${
+          variant === "grid" ? " project-card-hover-link" : ""
+        }`}
+        href={`/projects/${project.slug}`}
+      >
         <div
-          className={styles.imageFrame}
+          className={`${styles.imageFrame} project-card-overlay-trigger${
+            variant === "grid" ? " project-card-hover-trigger" : ""
+          }`}
+          data-header-surface="image"
           data-project-media
           data-reveal={reveal ? "image" : undefined}
           data-reveal-order={reveal ? index % 3 : undefined}
         >
           <Image
-            className={styles.image}
+            className={`${styles.image}${
+              variant === "grid" ? " project-card-hover-media" : ""
+            }`}
             src={project.thumbnailImage}
             alt={project.heroImageAlt ?? `Architectural view of ${project.title}`}
             fill
@@ -52,23 +63,19 @@ export function ProjectCard({
           <span className={styles.index} aria-hidden="true">
             {String(index + 1).padStart(2, "0")}
           </span>
+          <ProjectCardOverlay
+            project={project}
+            featured={variant === "feature"}
+            reveal={reveal}
+            revealOrder={(index % 3) + 1}
+          />
         </div>
 
-        <div
-          className={styles.details}
-          data-project-meta
-          data-reveal={reveal ? "meta" : undefined}
-          data-reveal-order={reveal ? (index % 3) + 1 : undefined}
-        >
-          <h3>{project.title}</h3>
-          <p className={styles.location}>{project.location}</p>
-          <p className={styles.meta}>
-            {project.category} / {project.year}
+        {variant === "feature" ? (
+          <p className={styles.summary} data-project-meta>
+            {project.summary}
           </p>
-          {variant === "feature" ? (
-            <p className={styles.summary}>{project.summary}</p>
-          ) : null}
-        </div>
+        ) : null}
       </Link>
     </article>
   );

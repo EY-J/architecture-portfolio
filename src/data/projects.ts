@@ -15,6 +15,7 @@ export const projects = [
     category: "Residential",
     status: "Concept Study",
     discipline: "Architecture + Visualization",
+    role: "Individual Project",
     featured: true,
     heroImage: "/projects/renov-proj/images/hero.png",
     heroImageAlt: "Renovation Project courtyard house exterior concept render",
@@ -24,6 +25,28 @@ export const projects = [
     narrative: [
       "The study organizes the home around a planted central court, using a sequence of compressed entries and open thresholds to connect the principal rooms with light, air, and landscape.",
       "Cream masonry, terracotta surfaces, timber screens, and deep openings create a warm material rhythm while preserving privacy from the street.",
+    ],
+    keyDesignMoves: [
+      {
+        title: "Courtyard as core",
+        description:
+          "The central court organizes circulation, daylight, ventilation, and views.",
+      },
+      {
+        title: "Light + shade",
+        description:
+          "Deep openings and screens control direct sunlight while preserving visual openness.",
+      },
+      {
+        title: "Material relationship",
+        description:
+          "Cream masonry, timber, and terracotta establish a restrained warm material palette.",
+      },
+      {
+        title: "Indoor–outdoor connection",
+        description:
+          "Planted thresholds soften the boundary between interior rooms and landscape.",
+      },
     ],
     carousel: [
       {
@@ -132,7 +155,7 @@ export const projects = [
     year: "2025",
     category: "Civic",
     status: "Academic",
-    role: "Replace with your role",
+    role: "Individual Project",
     featured: true,
     heroImage: "/images/projects/civic-forum-sample.png",
     thumbnailImage: "/images/projects/civic-forum-sample.png",
@@ -171,7 +194,7 @@ export const projects = [
     year: "2024",
     category: "Academic",
     status: "Research",
-    role: "Replace with your role",
+    role: "Individual Project",
     featured: true,
     heroImage: "/images/projects/timber-pavilion-sample.png",
     thumbnailImage: "/images/projects/timber-pavilion-sample.png",
@@ -204,7 +227,7 @@ export const projects = [
     year: "20XX",
     category: "Conceptual",
     status: "In development",
-    role: "Replace with your role",
+    role: "Individual Project",
     featured: false,
     heroImage: "/images/projects/project-placeholder-04-sample.png",
     thumbnailImage: "/images/projects/project-placeholder-04-sample.png",
@@ -237,7 +260,7 @@ export const projects = [
     year: "20XX",
     category: "Conceptual",
     status: "In development",
-    role: "Replace with your role",
+    role: "Individual Project",
     featured: false,
     heroImage: "/images/projects/project-placeholder-05-sample.png",
     thumbnailImage: "/images/projects/project-placeholder-05-sample.png",

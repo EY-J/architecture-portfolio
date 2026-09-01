@@ -60,7 +60,7 @@ export function ContactSection() {
       aria-labelledby="project-inquiry-title"
     >
       <div className={styles.shell}>
-        <div className={styles.card}>
+        <div className={styles.card} data-header-surface="dark">
           <div className={styles.introduction} data-contact-reveal>
             <h2 id="project-inquiry-title">
               Let’s create

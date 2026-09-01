@@ -17,6 +17,24 @@
   color: var(--color-muted);
 }
 
+.project-card-hover-media {
+  transition:
+    filter 760ms var(--ease-out),
+    transform 760ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card-hover-media {
+    filter: grayscale(78%) saturate(0.72) brightness(0.94);
+  }
+
+  .project-card-hover-trigger:hover .project-card-hover-media,
+  .project-card-hover-link:focus-visible .project-card-hover-media {
+    filter: grayscale(0%) saturate(1) brightness(1);
+    transform: scale(1.03);
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -42,5 +60,16 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-hover-media {
+    transition: none;
+  }
+
+  .project-card-hover-trigger:hover .project-card-hover-media,
+  .project-card-hover-link:focus-visible .project-card-hover-media {
+    transform: none;
   }
 }

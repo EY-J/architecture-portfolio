@@ -1,125 +1,21 @@
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 clamp(1.5rem, 3vw, 3rem);
-  align-items: center;
-  padding-bottom: clamp(0.85rem, 1.5vw, 1.25rem);
-  border-bottom: var(--rule);
-}
-
-.filter {
-  min-height: 2.5rem;
-  padding: 0.45rem 0 0.35rem;
-  border: 0;
-  border-bottom: 1px solid transparent;
-  border-radius: 0;
-  background: transparent;
-  color: var(--color-muted);
-  cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: clamp(0.68rem, 0.66rem + 0.08vw, 0.75rem);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  text-transform: uppercase;
-  transition:
-    border-color var(--duration-fast) ease,
-    color var(--duration-fast) ease;
-}
-
-.filter:hover,
-.filter:focus-visible,
-.filter[aria-pressed="true"] {
-  color: var(--color-text);
-}
-
-.filter[aria-pressed="true"] {
-  border-bottom-color: currentColor;
-}
-
-.filter:focus-visible {
-  outline: 1px solid var(--color-line-strong);
-  outline-offset: 3px;
-}
-
-.resultCount {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  border: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
-.archive {
-  margin-top: clamp(3.5rem, 5vw, 5rem);
-}
-
-.featuredLabel {
-  margin-bottom: clamp(0.9rem, 1.5vw, 1.25rem);
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: clamp(0.68rem, 0.66rem + 0.08vw, 0.75rem);
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(4.5rem, 6vw, 6.25rem) clamp(1.5rem, 2.5vw, 2.5rem);
-  margin-top: clamp(5rem, 7vw, 6.875rem);
-  padding-top: clamp(5rem, 7vw, 6.875rem);
-  border-top: var(--rule);
+  column-gap: 2rem;
+  row-gap: 2.5rem;
 }
 
 @media (max-width: 64rem) {
   .grid {
-    gap: clamp(3.5rem, 6vw, 5rem) clamp(1.25rem, 2.5vw, 2rem);
-    margin-top: clamp(4rem, 7vw, 5rem);
-    padding-top: clamp(4rem, 7vw, 5rem);
+    column-gap: 1.5rem;
+    row-gap: 2.125rem;
   }
 }
 
 @media (max-width: 48rem) {
-  .filters {
-    flex-wrap: nowrap;
-    gap: var(--space-4);
-    margin-inline: calc(var(--page-gutter) * -1);
-    padding-inline: var(--page-gutter);
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-padding-inline: var(--page-gutter);
-    scrollbar-width: none;
-  }
-
-  .filters::-webkit-scrollbar {
-    display: none;
-  }
-
-  .filter {
-    min-height: 2.75rem;
-    flex: 0 0 auto;
-  }
-
-  .archive {
-    margin-top: clamp(3rem, 12vw, 4rem);
-  }
-
   .grid {
     grid-template-columns: 1fr;
-    gap: clamp(3.5rem, 14vw, 5rem);
-    margin-top: clamp(3.5rem, 14vw, 5rem);
-    padding-top: clamp(3.5rem, 14vw, 5rem);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .filter {
-    transition: none;
+    column-gap: 0;
+    row-gap: 2rem;
   }
 }

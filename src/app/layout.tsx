@@ -5,8 +5,11 @@ import { ContactSection } from "@/components/home/ContactSection/ContactSection"
 import { Footer } from "@/components/layout/Footer/Footer";
 import { Header } from "@/components/layout/Header/Header";
 import { PageTransition } from "@/components/layout/PageTransition/PageTransition";
+import { ScrollActivityController } from "@/components/layout/ScrollActivityController/ScrollActivityController";
+import { SmoothScroll } from "@/components/layout/SmoothScroll/SmoothScroll";
 import { siteConfig } from "@/config/site";
 
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const inter = Inter({
@@ -48,23 +51,22 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${aboutSerif.variable}`}
-      data-scroll-behavior="smooth"
-    >
+    <html lang="en" className={`${inter.variable} ${aboutSerif.variable}`}>
       <body>
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        <div className="page-frame">
-          <Header />
-          <main id="main-content">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <ContactSection />
-          <Footer />
-        </div>
+        <SmoothScroll>
+          <ScrollActivityController />
+          <a className="skip-link" href="#main-content">
+            Skip to content
+          </a>
+          <div className="page-frame">
+            <Header />
+            <main id="main-content">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <ContactSection />
+            <Footer />
+          </div>
+        </SmoothScroll>
       </body>
     </html>
   );
